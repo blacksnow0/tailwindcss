@@ -8,23 +8,88 @@
       content="Hey this is a single page portfolio website to showcase my skills and projects."
     />
     <meta name="author" content="Himanshu Chauhan" />
+    <link href="./output.css" rel="stylesheet" />
     <title>Portfolio</title>
   </head>
-  <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
-          <li><a href="#">Projects</a></li>
-        </ul>
-      </nav>
-    </header>
+  <body class="bg-gray-100 text-gray-800">
+    <nav
+      class="bg-gray-800 text-gray-100 border-gray-200 px-4 lg:px-6 lg:py-3 shadow-md"
+    >
+      <div class="flex justify-between items-center mx-auto max-w-screen-xl">
+        <a class="flex items-center">
+          <img src="./assets/avatar.jpeg" class="h-8 mr-3" alt="logo" />
+          <span class="self-center text-xl font-semibold whitespace-nowrap"
+            >HC</span
+          >
+        </a>
+        <div class="flex items-center">
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" class="sr-only peer" />
+            <div
+              class="w-11 h-6 bg-gray-400 rounded-full peer-checked:bg-gray-500 peer-focus:ring-2 peer-focus:ring-black-300"
+            ></div>
+            <div
+              class="absolute w-5 h-5 bg-white rounded-full transition-transform transform peer-checked:translate-x-5"
+            ></div>
+          </label>
+        </div>
+
+        <div class="lg:hidden">
+          <input type="checkbox" id="menu-toggle" class="peer hidden" />
+          <label
+            for="menu-toggle"
+            class="cursor-pointer p-2 text-gray-500 rounded-lg focus:outline-none"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              ></path>
+            </svg>
+          </label>
+        </div>
+        <div
+          class="hidden peer-checked:flex flex-col lg:flex lg:flex-row lg:space-x-8 lg:items-center"
+        >
+          <a
+            href="#"
+            class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
+            >Home</a
+          >
+          <a
+            href="#"
+            class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
+            >About</a
+          >
+          <a
+            href="#"
+            class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
+            >Services</a
+          >
+          <a
+            href="#"
+            class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </nav>
     <section>
-      <h1>Hey!</h1>
-      <h1>Himanshu Chauhan</h1>
-      <p>You miss all the shots you don't take</p>
+      <div class="p-8">
+        <h1 class="text-4xl font-bold mb-4">Hey 👋</h1>
+        <h1 class="text-3xl font-semibold mb-4">I'm HIMANSHU CHAUHAN</h1>
+        <p class="text-lg text-gray-600">
+          You miss all of the shots you don't take
+        </p>
+      </div>
     </section>
   </body>
 </html>
