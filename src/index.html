@@ -5,35 +5,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Hey this is a single page portfolio website to showcase my skills and projects."
+      content="A single page portfolio website to showcase my skills and projects."
     />
     <meta name="author" content="Himanshu Chauhan" />
     <link href="./output.css" rel="stylesheet" />
     <title>Portfolio</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const toggle = document.getElementById("theme-toggle");
+        const root = document.documentElement;
+
+        const currentTheme = localStorage.getItem("theme");
+        if (currentTheme) {
+          root.setAttribute("data-theme", currentTheme);
+          toggle.checked = currentTheme === "dark";
+        }
+
+        toggle.addEventListener("change", () => {
+          const theme = toggle.checked ? "dark" : "light";
+          root.setAttribute("data-theme", theme);
+          localStorage.setItem("theme", theme);
+        });
+      });
+    </script>
+    <style>
+      :root {
+        --bg-color: #e5e7e9;
+        --text-color: #212529;
+        --link-color: grey;
+        --accent-color: #ffc107;
+      }
+
+      [data-theme="dark"] {
+        --bg-color: #212529;
+        --text-color: #f8f9fa;
+        --link-color: white;
+        --accent-color: #f9c74f;
+      }
+
+      body {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Arial", sans-serif;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+
+      button {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+
+        padding: 0.6rem 1.2rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .fab {
+        transition: transform 0.3s, color 0.3s;
+      }
+
+      .fab:hover {
+        transform: scale(1.1);
+      }
+      section {
+        padding-inline: 30px;
+      }
+    </style>
   </head>
-  <body class="bg-gray-100 text-gray-800">
-    <nav
-      class="bg-gray-800 text-gray-100 border-gray-200 px-4 lg:px-6 lg:py-3 shadow-md"
-    >
+  <body>
+    <nav class="px-4 lg:px-6 lg:py-3 shadow-md">
       <div class="flex justify-between items-center mx-auto max-w-screen-xl">
-        <a class="flex items-center">
-          <img src="./assets/avatar.jpeg" class="h-8 mr-3" alt="logo" />
+        <a class="flex items-center" href="#">
+          <img
+            src="./assets/avatar.jpeg"
+            class="h-8 mr-3 rounded-full"
+            alt="logo"
+          />
           <span class="self-center text-xl font-semibold whitespace-nowrap"
             >HC</span
           >
         </a>
         <div class="flex items-center">
           <label class="relative inline-flex items-center cursor-pointer">
-            <input type="checkbox" class="sr-only peer" />
+            <input
+              type="checkbox"
+              id="theme-toggle"
+              class="sr-only peer"
+              aria-label="Toggle dark mode"
+            />
             <div
-              class="w-11 h-6 bg-gray-400 rounded-full peer-checked:bg-gray-500 peer-focus:ring-2 peer-focus:ring-black-300"
+              class="w-11 h-6 bg-gray-400 rounded-full peer-checked:bg-gray-500"
             ></div>
             <div
               class="absolute w-5 h-5 bg-white rounded-full transition-transform transform peer-checked:translate-x-5"
             ></div>
           </label>
         </div>
-
         <div class="lg:hidden">
           <input type="checkbox" id="menu-toggle" class="peer hidden" />
           <label
@@ -65,31 +146,537 @@
             >Home</a
           >
           <a
-            href="#"
+            href="#about-me"
             class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
             >About</a
           >
           <a
-            href="#"
+            href="#skills"
             class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
-            >Services</a
+            >Skills</a
           >
           <a
-            href="#"
+            href="#contact-me"
             class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
-            >Contact</a
+            >Contact Me</a
+          >
+          <a
+            href="#projects"
+            class="block py-2 pr-4 pl-3 rounded hover:underline lg:p-0"
+            >Projects</a
           >
         </div>
       </div>
     </nav>
-    <section>
-      <div class="p-8">
-        <h1 class="text-4xl font-bold mb-4">Hey 👋</h1>
-        <h1 class="text-3xl font-semibold mb-4">I'm HIMANSHU CHAUHAN</h1>
-        <p class="text-lg text-gray-600">
-          You miss all of the shots you don't take
+
+    <section
+      class="flex flex-col lg:flex-row items-center justify-between max-w-6xl mx-auto px-6 py-10 lg:px-10 pt-24 lg:pt-32 min-h-[calc(100vh-64px)]"
+    >
+      <!-- Left Content -->
+      <div class="text-center lg:text-left lg:w-1/2 p-4 lg:p-8">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Hey 👋</h1>
+        <h2 class="text-3xl lg:text-4xl font-semibold mb-6">
+          I'm <span class="text-yellow-600">Himanshu Chauhan</span>
+        </h2>
+        <p class="text-lg lg:text-xl mb-6">
+          You miss all of the shots you don't take.
         </p>
+        <ul
+          class="flex justify-center lg:justify-start space-x-6 pb-5 pr-5 text-gray-600"
+        >
+          <li>
+            <a
+              href="https://linkedin.com/in/your-profile"
+              target="_blank"
+              aria-label="LinkedIn"
+              ><i class="fab fa-linkedin text-2xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/your-profile"
+              target="_blank"
+              aria-label="Twitter"
+              ><i class="fab fa-twitter text-2xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="https://instagram.com/your-profile"
+              target="_blank"
+              aria-label="Instagram"
+              ><i class="fab fa-instagram text-2xl"></i
+            ></a>
+          </li>
+          <li>
+            <a
+              href="mailto:your-email@example.com"
+              target="_blank"
+              aria-label="Email"
+              ><i class="fas fa-envelope text-2xl"></i
+            ></a>
+          </li>
+        </ul>
+        <div class="flex justify-center lg:justify-start space-x-4">
+          <a href="#" class="btn">Learn More About Me</a>
+          <a href="assets/resume.pdf" target="_blank" class="btn">Resume</a>
+        </div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="flex justify-center lg:justify-end lg:w-1/2 p-4">
+        <img
+          src="assets/avatar.jpeg"
+          alt="Himanshu Chauhan Avatar"
+          class="w-48 h-48 lg:w-64 lg:h-64 object-cover rounded shadow-md"
+        />
       </div>
     </section>
+
+    <section id="about-me" class="min-h-screen mt-11 p-8 lg:p-16">
+      <div
+        class="flex flex-col lg:flex-row items-center justify-between space-y-8 lg:space-y-0 lg:space-x-12"
+      >
+        <!-- Text Content -->
+        <div class="lg:w-1/2 space-y-8 lg:pl-10">
+          <div>
+            <h1 class="text-4xl lg:text-5xl font-bold mb-4 text-yellow-600">
+              About Me
+            </h1>
+            <p class="text-lg leading-relaxed">
+              With a knack for problem-solving and a love for clean, efficient
+              code, I specialize in building intuitive and user-friendly
+              applications. I thrive on tackling complex challenges and turning
+              ideas into reality through code. Outside of coding, you can find
+              me hiking, running, and playing basketball, which helps keep me
+              inspired and brings fresh perspectives to my work. Let’s connect!
+              Whether it’s to talk tech or share ideas, I’d love to hear from
+              you.
+            </p>
+          </div>
+          <div>
+            <h2 class="text-3xl font-semibold mb-4">My YouTube Channel</h2>
+            <div
+              class="relative w-full max-w-full lg:w-[650px] lg:h-[300px] aspect-w-16 aspect-h-9 shadow-lg rounded-lg overflow-hidden"
+            >
+              <iframe
+                src="https://www.youtube.com/embed/IjY_MMWC5kk?si=HMzGqDI44O-igAm6"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+                class="top-0 left-0 w-full h-full"
+              ></iframe>
+            </div>
+            <div class="mt-4">
+              <a
+                href="https://www.youtube.com/channel/UCc4ebCUh8TvThy6dcwBLs1g"
+                target="_blank"
+                class="inline-block bg-gray-500 text-white py-2 px-4 rounded shadow hover:bg-gray-600 transition"
+              >
+                Subscribe
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Content -->
+        <div class="lg:w-1/2 flex justify-center">
+          <img
+            src="assets/tatum.jpeg"
+            alt="Jason Tatum"
+            class="w-3/4 lg:w-2/3 max-w-sm rounded-lg shadow-lg object-cover"
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="min-h-screen mt-11 p-8 lg:p-16">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl lg:text-5xl font-bold mb-4">Skills</h1>
+        <p class="text-lg">
+          Here’s a showcase of my technical and soft skills along with my
+          expertise levels.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 85; --size: 8rem; --thickness: 8px"
+            >
+              85%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">Python</h2>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 80; --size: 8rem; --thickness: 8px"
+            >
+              80%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">JavaScript</h2>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 75; --size: 8rem; --thickness: 8px"
+            >
+              75%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">React</h2>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 70; --size: 8rem; --thickness: 8px"
+            >
+              70%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">MongoDB</h2>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 90; --size: 8rem; --thickness: 8px"
+            >
+              90%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">HTML/CSS</h2>
+        </div>
+
+        <!-- Skill Item -->
+        <div class="flex flex-col items-center text-center">
+          <div class="relative">
+            <div
+              class="radial-progress text-yellow-600"
+              style="--value: 95; --size: 8rem; --thickness: 8px"
+            >
+              95%
+            </div>
+          </div>
+          <h2 class="mt-4 text-xl font-semibold">Communication</h2>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="py-16">
+      <!-- Section Heading -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-semibold">My Projects</h2>
+        <p class="text-lg">Explore some of the projects I have worked on</p>
+      </div>
+
+      <!-- Project Cards Container -->
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+      >
+        <!-- Project Card 1 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project1.png"
+            alt="BurnMetrics"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">BurnMetrics</h3>
+          <p class="mb-4">
+            An application made to track and achive your fitness goals with fun
+            challenges.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project4.png"
+            alt="Portfolio"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">Portfolio</h3>
+          <p class="mb-4">
+            A website to showcase my front-end skills, projects and experience.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <!-- Project Card 3 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project5.png"
+            alt="RapVerse"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">RapVerse</h3>
+          <p class="mb-4">
+            A Blog page to tell you everything about the new Hip-Hop and the
+            culture.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <!-- Project Card 4 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project2.png"
+            alt="BurnMetrics"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">BurnMetrics</h3>
+          <p class="mb-4">
+            An application made to track and achive your fitness goals with fun
+            challenges.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <!-- Project Card 5 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project2.png"
+            alt="BurnMetrics"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">BurnMetrics</h3>
+          <p class="mb-4">
+            An application made to track and achive your fitness goals with fun
+            challenges.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <!-- Project Card 6 -->
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project5.png"
+            alt="RapVerse"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">RapVerse</h3>
+          <p class="mb-4">
+            A Blog page to tell you everything about the new Hip-Hop and the
+            culture.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+
+        <div
+          class="p-6 border rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <img
+            src="assets/project3.png"
+            alt="BurnMetrics"
+            class="w-full h-40 object-cover rounded-lg mb-4"
+          />
+          <h3 class="text-xl font-semibold mb-2">BurnMetrics</h3>
+          <p class="mb-4">
+            An application made to track and achive your fitness goals with fun
+            challenges.
+          </p>
+          <a href="#" class="hover:underline">View Project</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="certifications" class="py-16">
+      <!-- Section Heading -->
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-semibold mb-4">Relevant Certifications</h2>
+        <p class="text-lg mb-4">
+          Certifications that showcase my skills and expertise
+        </p>
+      </div>
+
+      <!-- Certification Cards Container -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Certification Card 1 -->
+        <div
+          class="p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <h3 class="text-xl font-semibold mb-2">
+            Web Development Masterclass
+          </h3>
+          <p class="mb-4">Issued by: Online Academy</p>
+          <p class="mb-4">Date: January 2023</p>
+
+          <!-- Details for certificate link -->
+          <details class="group">
+            <summary class="cursor-pointer hover:underline">
+              View Certificate
+            </summary>
+            <div class="p-4 mt-2 rounded-lg">
+              <p>
+                Certificate of Completion for Web Development Masterclass.
+                <!-- Link to local certificate file -->
+                <a
+                  href="/certificates/certificate-1.pdf"
+                  target="_blank"
+                  class="underline"
+                  >Click here to open the certificate</a
+                >.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Certification Card 2 -->
+        <div
+          class="p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <h3 class="text-xl font-semibold mb-2">Frontend Web Design</h3>
+          <p class="mb-4">Issued by: Design University</p>
+          <p class="mb-4">Date: March 2022</p>
+
+          <!-- Details for certificate link -->
+          <details class="group">
+            <summary class="cursor-pointer hover:underline">
+              View Certificate
+            </summary>
+            <div class="p-4 mt-2 rounded-lg">
+              <p>
+                Certificate of Completion for Frontend Web Design.
+                <!-- Link to local certificate file -->
+                <a
+                  href="/certificates/certificate-2.pdf"
+                  target="_blank"
+                  class="underline"
+                  >Click here to open the certificate</a
+                >.
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <!-- Certification Card 3 -->
+        <div
+          class="p-6 rounded-lg shadow-lg transition-transform transform hover:scale-105"
+        >
+          <h3 class="text-xl font-semibold mb-2">Data Science Specialist</h3>
+          <p class="mb-4">Issued by: Data Science Institute</p>
+          <p class="mb-4">Date: July 2021</p>
+
+          <!-- Details for certificate link -->
+          <details class="group">
+            <summary class="cursor-pointer hover:underline">
+              View Certificate
+            </summary>
+            <div class="p-4 mt-2 rounded-lg">
+              <p>
+                Certificate of Completion for Data Science Specialist.
+                <!-- Link to local certificate file -->
+                <a
+                  href="/certificates/certificate-3.pdf"
+                  target="_blank"
+                  class="underline"
+                  >Click here to open the certificate</a
+                >.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact-me" class="min-h-screen p-8 lg:p-16">
+      <div class="max-w-4xl mx-auto">
+        <!-- Header -->
+        <div class="text-center mb-12">
+          <h1 class="text-4xl lg:text-5xl font-bold mb-4">Contact Me</h1>
+          <p class="text-lg">
+            Have questions, opportunities, or just want to say hi? Feel free to
+            reach out!
+          </p>
+        </div>
+
+        <!-- Contact Form -->
+        <form method="POST" class="shadow-md rounded-lg p-6 lg:p-12 space-y-6">
+          <!-- Name Input -->
+          <div class="flex flex-col">
+            <label for="name" class="font-medium mb-2">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              placeholder="Your full name"
+              class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Email Input -->
+          <div class="flex flex-col">
+            <label for="email" class="font-medium mb-2">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="Your email address"
+              class="border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <!-- Message Input -->
+          <div class="flex flex-col">
+            <label for="message" class="font-medium mb-2">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              placeholder="Write your message here"
+              rows="5"
+              class="border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center">
+            <button
+              type="submit"
+              class="border py-3 px-6 rounded-lg font-medium shadow-lg"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <footer class="text-center p-5 border-t-2">
+      <p>&copy; 2024 Himanshu Chauhan. All rights reserved.</p>
+    </footer>
   </body>
 </html>
